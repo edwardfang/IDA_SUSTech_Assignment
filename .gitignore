@@ -2,3 +2,6 @@
 *.log
 *.toc
 *.synctex.gz
+*.bbl
+*.blg
+.ipynb_checkpoints
