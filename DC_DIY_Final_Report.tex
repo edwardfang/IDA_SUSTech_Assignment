@@ -1,14 +1,19 @@
 \documentclass[12pt]{article}
 \usepackage[english]{babel}
-\usepackage{natbib}
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{abbrvnat}
 \usepackage{url}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{booktabs}
 \graphicspath{{images/}}
 \usepackage{parskip}
 \usepackage{fancyhdr}
 \usepackage{vmargin}
+
+\usepackage{tabularx}
+
 \setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
 
 \title{Investigating Properties of Houses from a New York Airbnb Dataset}                             % Title
@@ -66,14 +71,66 @@
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-Airbnb is an online marketplace and hospitality service, enabling people to lease or rent short-term lodging including vacation rentals, apartment rentals, homestays, hostel beds, or hotel rooms. The dataset analysed in there experiments is derived from Tom Slee's blog and it is crawled from the website of Airbnb. And only a small part of data for New York, crawled on 05/06/2017 are analysed. 
+Airbnb is an online marketplace and hospitality service, enabling people to lease or rent short-term lodging including vacation rentals, apartment rentals, homestays, hostel beds, or hotel rooms. The dataset analysed in there experiments is derived from Tom Slee's blog\cite{slee-2017} and it is crawled from the website of Airbnb. And only a small part of data for New York, crawled on 05/06/2017, are analysed.
 
 \section{Data Preprocessing}
 \subsection{Data Description}
+Here is the meaning for each column in the collected CSV file:
+\begin{itemize}
+\item room\_id: A unique number identifying an Airbnb listing. The listing has a URL on the Airbnb web site of \url{http://airbnb.com/rooms/room_id}
+\item survey\_id: A unique number identifying the behaviour of survey.
+\item host\_id: A unique number identifying an Airbnb host. The host’s page has a URL on the Airbnb web site of \url{http://airbnb.com/users/show/host_id}
+\item room\_type: One of “Entire home/apt”, “Private room”, or “Shared room”
+\item country: the nation the room located in; acutually no data
+\item city: the city the room located in
+\item borough: A subregion of the city or search area for which the survey is carried out. The borough is taken from a shapefile of the
+city that is obtained independently of the Airbnb web site. For some cities, there is no borough information; for others the borough may be a number. If you have better shapefiles for a city of interest, please send them to me.
+\item neighborhood: As with borough: a subregion of the city or search area for which the survey is carried out. For cities that have both, a neighbourhood is smaller than a borough. For some cities there is no neighbourhood information.
+\item reviews: The number of reviews that a listing has received. Airbnb has said that 70\% of visits end up with a review, so the number of reviews can be used to estimate the number of visits. Note that such an estimate will not be reliable for an individual listing (especially as reviews occasionally vanish from the site), but over a city as a whole it should be a useful metric of traffic.
+\item overall\_satisfaction: The average rating (out of five) that the listing has received from those visitors who left a review.
+\item accommodates: The number of guests a listing can accommodate.
+\item bedrooms: The number of bedrooms a listing offers.
+\item bathrooms: The number of bathrooms a listing offers, actually not available.
+\item price: The price (in \$US) for a night stay.
+\item minstay: The minimum stay for a visit, as posted by the host.
+\item name: The name of the room.
+\item property\_type:“Apartment”, “Loft”, “Villa”, “House”, etc.
+\item latitude and longitude: The latitude and longitude of the listing as posted on the Airbnb site: this may be off by a few hundred metres. 
+\item last\_modified: the date and time that the values were read from the Airbnb web site.
+\item location: Unkown, certain number related to the location of the room.
+\end{itemize}
+The first line of the CSV file holds the column headings.
+\subsection{Data Preprocessing}
+\subsubsection{Removing of the useless data and the Selection of the records}
 
+As the amount of data is really large (up to 40,730 rows), we just remove the data records without avaiable \textit{reviews} or \textit{overrall\_satisfication}. Since the prices higher than \$200 per night are assumed as not reasonable, the records with those extremely high prices are removed. 
+ Also, as the columns \textit{room\_id, survey\_id, host\_id, country, city, last\_modified} and \textit{location} are meaningless, we removed them from the data. In addition, it is found that the values of column \textit{bathrooms} and \textit{minstay} are unavailable.
+\par
+Finally, for the simplification of the problem, we just retrieve the records whose boroughs are “Manhattan” or ``Brooklyn''. And the experimental data are sampled from the original data under the sample fraction of $0.1$.\par
+\begin{table}[h]
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lllrrrrrrrl}
+\toprule
+{} &        room\_type &    borough &  accommodates &  reviews &  overall\_satisfaction &  bedrooms &  price &  longitude &   latitude & property\_type \\
+\midrule
+0 &  Entire home/apt &   Brooklyn &             2 &       95 &                   5.0 &       0.0 &  125.0 & -73.943276 &  40.721256 &     Apartment \\
+1 &  Entire home/apt &   Brooklyn &             3 &        3 &                   4.5 &       1.0 &  165.0 & -73.952168 &  40.723975 &         House \\
+2 &  Entire home/apt &  Manhattan &             5 &       25 &                   4.0 &       2.0 &  220.0 & -73.962862 &  40.758275 &     Apartment \\
+3 &  Entire home/apt &  Manhattan &             2 &        2 &                   0.0 &       1.0 &  180.0 & -74.003905 &  40.733196 &     Apartment \\
+4 &  Entire home/apt &   Brooklyn &             4 &        3 &                   5.0 &       1.0 &  132.0 & -73.957279 &  40.733538 &     Apartment \\
+\bottomrule
+\end{tabular}
+}
+    \caption{Data After preprocessing}
+    \label{tab:data1}
+\end{table}
+The data at the end looks like the Table \ref{tab:data1}:\\
+\subsubsection{One Hot Encoding}
+As the data 
+
+\section{}
 
 \newpage
-\bibliographystyle{plain}
 \bibliography{biblist}
 
 \end{document}
