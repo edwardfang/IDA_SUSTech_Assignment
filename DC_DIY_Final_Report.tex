@@ -103,7 +103,7 @@ The first line of the CSV file holds the column headings.
 \subsection{Data Preprocessing}
 \subsubsection{Removing of the useless data and the Selection of the records}
 
-As the amount of data is really large (up to 40,730 rows), we just remove the data records without avaiable \textit{reviews} or \textit{overrall\_satisfication}. Since the prices higher than \$200 per night are assumed as not reasonable, the records with those extremely high prices are removed. 
+As the amount of data is really large (up to 40,730 rows), we just remove the data records without avaiable \textit{reviews} or \textit{overrall\_satisfaction}. Since the prices higher than \$200 per night are assumed as not reasonable, the records with those extremely high prices are removed. 
  Also, as the columns \textit{room\_id, survey\_id, host\_id, country, city, last\_modified} and \textit{location} are meaningless, we removed them from the data. In addition, it is found that the values of column \textit{bathrooms} and \textit{minstay} are unavailable.
 \par
 Finally, for the simplification of the problem, we just retrieve the records whose boroughs are “Manhattan” or ``Brooklyn''. And the experimental data are sampled from the original data under the sample fraction of $0.1$.\par
@@ -143,21 +143,60 @@ For example, if there two roon, whose types are ``Private room'' and ``Entire ho
 \end{table}
 \subsubsection{Data Standardization}
 To see the significance of data standardization, two box plot was made, one for the raw data and another for the standardized data. Note that the one-hot encoded columns are standardized but are not included in the figures because the scal of the box plot will be influenced by those attributes and make the differece hard to distinguish.\\
-As is obvious from the Figure \ref{fig:before-std}, the values of attribute \textit{reviews} are not in the same scale with other attributes. Neither does the longtitude and latitude. If we use these values in the matrix we will calculate later, the importance of attribute \textit{reviews} ,\textit{latitude} and \textit{longtitude} will be extremly larger than ohter attributes. Thus, we need to apply the standardization to the raw data.
-\begin{figure}[h]
+\begin{figure}[htbp]
+\centering
 \includegraphics[width = \textwidth]{images/before-std.png}
 \caption{Data before standardization}
 \label{fig:before-std}
 \end{figure}
+As is obvious from the Figure \ref{fig:before-std}, the values of attribute \textit{reviews} are not in the same scale with other attributes. Neither does the longtitude and latitude. If we use these values in the matrix we will calculate later, the importance of attribute \textit{reviews} ,\textit{latitude} and \textit{longtitude} will be extremly larger than ohter attributes. Thus, we need to apply the standardization to the raw data.
+
 \par Standardization can be done in many ways, the formula
 \[NewValue = (OldValue-Mean)/StandardDeviation\]
-is enough for this dataset. The result is shown in the Figure \ref{fig:after-std}
-\begin{figure}[h]
+is enough for this dataset. The result is shown in the Figure \ref{fig:after-std}.
+\begin{figure}[htbp]
+\centering
 \includegraphics[width = \textwidth]{images/after-std.png}
 \caption{Data after standardization}
 \label{fig:after-std}
 \end{figure}
-\section{}
+\section{Questions to Ask and Labeling}
+\subsection{Questions to Ask}
+
+When people go out and want to find a room to stay in a city, it can be said that the most concerning aspects of a room is its condition, position and price. In the dataset analysed, the price is already there and the overall satisfaction can represent a combination of all the aspects. Thus, two questions are going to be explored in these expriment.
+\begin{itemize}
+\item Can the ranges of price be roughly predicted using other attributes of the data?
+\item Can the overrall stasfications be roughly predicted using other attributes of data?
+\item What is the most crucial factors that influence the price and overroll satisfaction among the attributes we have?
+
+\item How much the difference will be for the data in two different borough?
+\end{itemize}
+\subsection{Labeling Schemes}
+\subsubsection{Label of Prices}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{images/price-distr.png}
+\caption{Distribution of prices that is lower than \$750}
+\label{fig:price-distr}
+\end{figure}
+The price level can be classify into three level according to the distribution of the prices. Fig. \ref{fig:price-distr} shows the distribution and according to it, the data are labelled into three approximately-equal-size classes: ``low price'', ``middle price'' and ``high price''.\par
+ Note that for the convenience of visualization, we just plot the distribution of prices that is lower than \$750, and only a few records' prices are higher than \$750.
+ \par
+ After some trying, it is finnally found that these three intervals are best for the data to be evenly devided and labelled: \([0,85)\), \([85, 149)\) and \([149, \infty)\).
+\subsubsection{Label of Overroll Satisfaction}
+\section{Data Analysis}
+\subsection{Coordinate Projections}
+\subsection{Prices of the rooms}
+\subsubsection{Principal Component Analysis}
+\subsubsection{Clustering}
+\subsubsection{Self-orgnization map}
+
+\subsection{Overall satisfaction}
+\subsubsection{Principal Component Analysis}
+\subsubsection{Clustering}
+\subsubsection{Self-orgnization map}
+\subsection{Differences between two boroughs}
+\section{Conclusion}
 
 \newpage
 \bibliography{biblist}
