@@ -124,10 +124,39 @@ Finally, for the simplification of the problem, we just retrieve the records who
     \caption{Data After preprocessing}
     \label{tab:data1}
 \end{table}
-The data at the end looks like the Table \ref{tab:data1}:\\
+The data at the end looks like the Table \ref{tab:data1}.\\
 \subsubsection{One Hot Encoding}
-As the data 
-
+To make use of the data field \textit{room\_type}, \textit{borough} and \textit{property\_type}, both of the infomation are encoded using the method called One-Hot encoding to transform the data. By doing so, it is ensured that the infomation of all possible aspects of the room are included into the data matrix.\\
+For example, if there two roon, whose types are ``Private room'' and ``Entire home/apt'', respectively, then the encoded result looks like Table \ref{tab:onehot}. Three different columns are added to enumerate all possible room types. And the values are all zeros except for the room type the room belongs to.
+\begin{table}[h]
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+{} &  accommodates &  ...  &   latitude &  room\_type\_Entire home/apt &  room\_type\_Private room &  room\_type\_Shared room &...\\
+\midrule
+0 &             2 &...&   40.691398 &                          0 &                       1 &                      0 &...\\
+1 &             4 &...&  40.811016 &                          1 &                       0 &                      0 &...\\
+\bottomrule
+\end{tabular}}
+\caption{Example Data After One-hot Encoding}
+    \label{tab:onehot}
+\end{table}
+\subsubsection{Data Standardization}
+To see the significance of data standardization, two box plot was made, one for the raw data and another for the standardized data. Note that the one-hot encoded columns are standardized but are not included in the figures because the scal of the box plot will be influenced by those attributes and make the differece hard to distinguish.\\
+As is obvious from the Figure \ref{fig:before-std}, the values of attribute \textit{reviews} are not in the same scale with other attributes. Neither does the longtitude and latitude. If we use these values in the matrix we will calculate later, the importance of attribute \textit{reviews} ,\textit{latitude} and \textit{longtitude} will be extremly larger than ohter attributes. Thus, we need to apply the standardization to the raw data.
+\begin{figure}[h]
+\includegraphics[width = \textwidth]{images/before-std.png}
+\caption{Data before standardization}
+\label{fig:before-std}
+\end{figure}
+\par Standardization can be done in many ways, the formula
+\[NewValue = (OldValue-Mean)/StandardDeviation\]
+is enough for this dataset. The result is shown in the Figure \ref{fig:after-std}
+\begin{figure}[h]
+\includegraphics[width = \textwidth]{images/after-std.png}
+\caption{Data after standardization}
+\label{fig:after-std}
+\end{figure}
 \section{}
 
 \newpage
