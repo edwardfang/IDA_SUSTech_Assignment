@@ -166,16 +166,16 @@ is enough for this dataset. The result is shown in the Figure \ref{fig:after-std
 When people go out and want to find a room to stay in a city, it can be said that the most concerning aspects of a room is its condition, position and price. In the dataset analysed, the price is already there and the overall satisfaction can represent a combination of all the aspects. Thus, two questions are going to be explored in these expriment.
 \begin{itemize}
 \item Can the ranges of price be roughly predicted using other attributes of the data?
-\item Can the overrall stasfications be roughly predicted using other attributes of data?
-\item What is the most crucial factors that influence the price and overroll satisfaction among the attributes we have?
+\item Can the overall stasfications be roughly predicted using other attributes of data?
+\item What is the most crucial factors that influence the price and overall satisfaction among the attributes we have?
 
 \item How much the difference will be for the data in two different borough?
 \end{itemize}
 \subsection{Labeling Schemes}
 \subsubsection{Label of Prices}
-\begin{figure}[htbp]
+\begin{figure}[htb]
 \centering
-\includegraphics[width = \textwidth]{images/price-distr.png}
+\includegraphics[width = 0.8\textwidth]{images/price-distr.png}
 \caption{Distribution of prices that is lower than \$750}
 \label{fig:price-distr}
 \end{figure}
@@ -183,18 +183,38 @@ The price level can be classify into three level according to the distribution o
  Note that for the convenience of visualization, we just plot the distribution of prices that is lower than \$750, and only a few records' prices are higher than \$750.
  \par
  After some trying, it is finnally found that these three intervals are best for the data to be evenly devided and labelled: \([0,85)\), \([85, 149)\) and \([149, \infty)\).
-\subsubsection{Label of Overroll Satisfaction}
+\subsubsection{Label of Overall Satisfaction}
 \section{Data Analysis}
-\subsection{Coordinate Projections}
+After the preprocessing of the data, the Principle Component Anaylysis (PCA) algorithm was used to generate the eigenvalues, eigenvectors, and coefficients to the eigenvalues, which actually are the variances that contianed in each directions that eigenvectors expend.
 \subsection{Prices of the rooms}
 \subsubsection{Principal Component Analysis}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/eigenvalues1.png}
+\caption{ A scree plot showing the percentage variance of each principle component, and a running cumulative total}
+\label{fig:eigenvalues1}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pca1-2d.png}
+\caption{A 2D projection of the PCA results}
+\label{fig:pca1-2d}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pca1-3d.png}
+\caption{A 3D projection of the PCA results}
+\label{fig:pca1-3d}
+\end{figure}
 \subsubsection{Clustering}
+
 \subsubsection{Self-orgnization map}
 
 \subsection{Overall satisfaction}
 \subsubsection{Principal Component Analysis}
 \subsubsection{Clustering}
 \subsubsection{Self-orgnization map}
+\subsection{Coordinate Projections}
 \subsection{Differences between two boroughs}
 \section{Conclusion}
 
