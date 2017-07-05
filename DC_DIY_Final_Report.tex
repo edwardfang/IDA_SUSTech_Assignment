@@ -101,12 +101,14 @@ city that is obtained independently of the Airbnb web site. For some cities, the
 \end{itemize}
 The first line of the CSV file holds the column headings.
 \subsection{Data Preprocessing}
+Note that in this report only the data preprocessing process of the first problem is shown, but the other data preprocessing processes are all very similar.
 \subsubsection{Removing of the useless data and the Selection of the records}
 
 As the amount of data is really large (up to 40,730 rows), we just remove the data records without avaiable \textit{reviews} or \textit{overrall\_satisfaction}. Since the prices higher than \$200 per night are assumed as not reasonable, the records with those extremely high prices are removed. 
  Also, as the columns \textit{room\_id, survey\_id, host\_id, country, city, last\_modified} and \textit{location} are meaningless, we removed them from the data. In addition, it is found that the values of column \textit{bathrooms} and \textit{minstay} are unavailable.
 \par
 Finally, for the simplification of the problem, we just retrieve the records whose boroughs are “Manhattan” or ``Brooklyn''. And the experimental data are sampled from the original data under the sample fraction of $0.1$.\par
+
 \begin{table}[h]
 \resizebox{\linewidth}{!}{
 \begin{tabular}{lllrrrrrrrl}
