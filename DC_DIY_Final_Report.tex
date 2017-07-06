@@ -190,15 +190,64 @@ The label of overall satisfication is set to be ``low'' if \textit{overall\_sati
 \section{Data Analysis}
 After the preprocessing of the data, the Principle Component Anaylysis (PCA) algorithm was used to generate the eigenvalues, eigenvectors, and coefficients to the eigenvalues, which actually are the variances that contianed in each directions that eigenvectors expend.
 \subsection{Coordinate Projections}
-First some simple projections of just two attribues of the data are used.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+First some simple projections of just two attribues of the data are used.\\
+As most of our attributes are discrete, some of the important can be distinguished as a form of points' labels.  
+\\ From most of these figures such as Fig.\ref{fig:pair-acc-price} and Fig.\ref{fig:pair-bedrooms-price} it can be found that the average room price in Manhattan is generally higher than that in Brookly. This is perhaps due to the fact that Manhattan is the center of the city. Also, Fig.\ref{fig:pair-acc-price} indicates that the larger the accomodates number is, the higher the price is. The trend of price over number of bedrooms in Fig.\ref{fig:pair-bedrooms-price} is similar, which is intutively true.
+\par However, Fig. \ref{fig:pair-latitude-longitude-price}, \ref{fig:pair-over-price1}, \ref{fig:pair-over-price2}, \ref{fig:pair-reviews-price1} and \ref{fig:pair-reviews-price2} also show some relation  between price and location, overall satisfication, room type and reviews number. So which of there attributes can influence the price mostly, i.e. the importance of these attributes. Then it can be figured out by the technique of PCA.
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.8\textwidth]{images/pair-acc-price.png}
-\caption{ A scree plot showing the percentage variance of each principle component, and a running cumulative total}
-\label{fig:pair-acc-price}
+\caption{A 2D-projection on to the prices and accomdates with borough label}
+\label{fig:pair-acc-price}label{fig:pair-over-price2}
 \end{figure}
-\subsection{Prices of the rooms}
-\subsubsection{Principal Component Analysis}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pair-bedrooms-price.png}
+\caption{A 2D-projection on to the prices and bedrooms with borough label}
+\label{fig:pair-bedrooms-price}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pair-latitude-longitude-price.png}
+\caption{A 2D-projection on to the latitude and longitude with price label}
+\label{fig:pair-latitude-longitude-price}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pair-latitude-longitude-satisfiction.png}
+\caption{A 2D-projection on to the latitude and longitude with satisfiction label}
+\label{fig:pair-latitude-longitude-satisfiction}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pair-over-price1.png}
+\caption{A 2D-projection on to the satisfiction and price with borough label}
+\label{fig:pair-over-price1}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pair-over-price2.png}
+\caption{A 2D-projection on to the satisfiction and price with room type label}
+\label{fig:pair-over-price2}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pair-reviews-price1.png}
+\caption{A 2D-projection on to the number of reviews and price with borough label}
+\label{fig:pair-reviews-price1}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pair-reviews-price2.png}
+\caption{A 2D-projection on to the number of reviews and price with room type label}
+\label{fig:pair-reviews-price2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Principal Component Analysis}
+\subsubsection{Prices of the rooms}
+
 It can be noticed from Fig.\ref{fig:eigenvalues1} that the distribution of variance of the principle components is not concentrated to the first serval principal components very well. Thus, if the data is projected on to the first two or three principle components, it can be predicted that the structure of results will not very similar to that of the original data.\par
 However, the PCA technique indeed reduce some dimensions, as it can be concluded from the Fig.\ref{fig:eigenvalues1} that the first 15 eigenvectors can preserve the 90\% of the variance of the dataset. 
 \begin{figure}[htb]
@@ -222,14 +271,12 @@ However, the PCA technique indeed reduce some dimensions, as it can be concluded
 \caption{A 3D projection of the PCA results}
 \label{fig:pca1-3d}
 \end{figure}
-\subsubsection{Clustering}
+\subsubsection{Overall satisfaction}
+\subsection{Clustering}
 
-\subsubsection{Self-orgnization map}
+\subsection{Self-orgnization map}
 
-\subsection{Overall satisfaction}
-\subsubsection{Principal Component Analysis}
-\subsubsection{Clustering}
-\subsubsection{Self-orgnization map}
+
 Each cell is the normalised sum of the distances between a neuron and its neighbours.
 
 \subsection{Differences between two boroughs}
