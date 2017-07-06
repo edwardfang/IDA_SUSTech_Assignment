@@ -181,7 +181,7 @@ When people go out and want to find a room to stay in a city, it can be said tha
 \caption{Distribution of prices that is lower than \$750}
 \label{fig:price-distr}
 \end{figure}
-The price level can be classify into three level according to the distribution of the prices. Fig. \ref{fig:price-distr} shows the distribution and according to it, the data are labelled into three approximately-equal-size classes: ``low price'', ``middle price'' and ``high price''.\par
+The price level can be classify into three level according to the distribution of the prices. Fig.\ref{fig:price-distr} shows the distribution and according to it, the data are labelled into three approximately-equal-size classes: ``low price'', ``middle price'' and ``high price''.\par
  Note that for the convenience of visualization, we just plot the distribution of prices that is lower than \$750, and only a few records' prices are higher than \$750.
  \par
  After some trying, it is finnally found that these three intervals are best for the data to be evenly devided and labelled: \([0,85)\), \([85, 149)\) and \([149, \infty)\).
@@ -189,14 +189,27 @@ The price level can be classify into three level according to the distribution o
 The label of overall satisfication is set to be ``low'' if \textit{overall\_satisfaction} is equal to or less than 4, ``median'' if is equal to 4.5, ``high'' if equal to 5.
 \section{Data Analysis}
 After the preprocessing of the data, the Principle Component Anaylysis (PCA) algorithm was used to generate the eigenvalues, eigenvectors, and coefficients to the eigenvalues, which actually are the variances that contianed in each directions that eigenvectors expend.
+\subsection{Coordinate Projections}
+First some simple projections of just two attribues of the data are used.
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pair-acc-price.png}
+\caption{ A scree plot showing the percentage variance of each principle component, and a running cumulative total}
+\label{fig:pair-acc-price}
+\end{figure}
 \subsection{Prices of the rooms}
 \subsubsection{Principal Component Analysis}
+It can be noticed from Fig.\ref{fig:eigenvalues1} that the distribution of variance of the principle components is not concentrated to the first serval principal components very well. Thus, if the data is projected on to the first two or three principle components, it can be predicted that the structure of results will not very similar to that of the original data.\par
+However, the PCA technique indeed reduce some dimensions, as it can be concluded from the Fig.\ref{fig:eigenvalues1} that the first 15 eigenvectors can preserve the 90\% of the variance of the dataset. 
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.8\textwidth]{images/eigenvalues1.png}
 \caption{ A scree plot showing the percentage variance of each principle component, and a running cumulative total}
 \label{fig:eigenvalues1}
 \end{figure}
+\par Figure \ref{fig:pca1-2d} projects the 23 dimensional data onto a sub-space spanned by the first and second eigenvector of the covariance matrix of $X$
+\par The more detialed infomation of the first three eigenvectors are shown in the Table.\ref{tab:eigenvectors1}
+
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.8\textwidth]{images/pca1-2d.png}
@@ -218,7 +231,7 @@ After the preprocessing of the data, the Principle Component Anaylysis (PCA) alg
 \subsubsection{Clustering}
 \subsubsection{Self-orgnization map}
 Each cell is the normalised sum of the distances between a neuron and its neighbours.
-\subsection{Coordinate Projections}
+
 \subsection{Differences between two boroughs}
 \section{Conclusion}
 
