@@ -11,6 +11,7 @@
 \usepackage{parskip}
 \usepackage{fancyhdr}
 \usepackage{vmargin}
+\usepackage[section]{placeins}
 
 \usepackage{tabularx}
 
@@ -250,6 +251,7 @@ As most of our attributes are discrete, some of the important can be distinguish
 
 It can be noticed from Fig.\ref{fig:eigenvalues1} that the distribution of variance of the principle components is not concentrated to the first serval principal components very well. Thus, if the data is projected on to the first two or three principle components, it can be predicted that the structure of results will not very similar to that of the original data.\par
 However, the PCA technique indeed reduce some dimensions, as it can be concluded from the Fig.\ref{fig:eigenvalues1} that the first 15 eigenvectors can preserve the 90\% of the variance of the dataset. 
+
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.8\textwidth]{images/eigenvalues1.png}
@@ -257,8 +259,11 @@ However, the PCA technique indeed reduce some dimensions, as it can be concluded
 \label{fig:eigenvalues1}
 \end{figure}
 \par Figure \ref{fig:pca1-2d} projects the 23 dimensional data onto a sub-space spanned by the first and second eigenvector of the covariance matrix of $X$
-\par The more detialed infomation of the first three eigenvectors are shown in the Table.\ref{tab:eigenvectors1}
-
+\par The more detialed infomation of the first three eigenvectors are shown in the Table \ref{tab:eigenvectors1}.
+In the first eigenvector the importance of borough is very important, this is why it can be discovered that in the following PCA projection figues there are 2 similar part of cluster (such as in Fig. \ref{fig:pca1-2d} and \ref{fig:pca1-3d}). Also, the latitude and longtitude are actully related to the borough it located in, thus they increase the distinction or distance in the projection. \par
+The price differences are mainly interpreted by the second principal eigenvector. The most siginificant components in the 2nd vector is the room type. Since ``Entire'' type and ``Private'' type are negtive and positive respectively, we can conclude from the PCA projection result that the prices of Entire home/apt rooms are higher much higher than those of Private room. Also, the more accommodates and bedrooms, the higher price the room will have. The importance of accommodate numbers is greater than that of room numbers. And the overall stasifcation does influence a little on the price, which reveal the ``effect of market''.\par
+For the 3rd most siginificant eigenVector, the point is that the room with larger value has lower price. So this vector illustrate the property type influence on the price. The price of property type from lower to higher is apartment, house, loft and townhouse.
+%%%%%%%%%%%%%%%%%%% PCA1 %%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.8\textwidth]{images/pca1-2d.png}
@@ -271,7 +276,49 @@ However, the PCA technique indeed reduce some dimensions, as it can be concluded
 \caption{A 3D projection of the PCA results}
 \label{fig:pca1-3d}
 \end{figure}
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{@{}crcrcr@{}}
+\multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}1st Principle Component\\ Eignenvalue 3.15901473\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}2nd Principle Component\\ Eigenvalue 2.53613192\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}3rd Principle Component\\ Eigenvalue 1.73809388\end{tabular}} \\ \midrule
+borough\_Manhattan                                           & -0.51484551                                   & room\_type\_Entire home/apt                                  & -0.52678505                                  & property\_type\_Apartment                                    & 0.60738014                                   \\
+borough\_Brooklyn                                            & 0.51484551                                    & room\_type\_Private room                                     & 0.51272818                                   & property\_type\_House                                        & -0.36991721                                  \\
+latitude                                                     & -0.41706656                                   & accommodates                                                 & -0.50934697                                  & property\_type\_Loft                                         & -0.28433712                                  \\
+property\_type\_Apartment                                    & -0.29132238                                   & bedrooms                                                     & -0.34241624                                  & borough\_Manhattan                                           & -0.26485932                                  \\
+longitude                                                    & 0.26209607                                    & overall\_satisfaction                                        & -0.14247044                                  & borough\_Brooklyn                                            & 0.26485932                                   \\
+property\_type\_House                                        & 0.25374459                                    & latitude                                                     & 0.11644046                                   & latitude                                                     & -0.22556836                                  \\
+room\_type\_Private room                                     & 0.15672518                                    & reviews                                                      & -0.0980652                                   & property\_type\_Townhouse                                    & -0.20936499                                  \\
+room\_type\_Entire home/ap                                   & -0.15512859                                   & property\_type\_Apartment                                    & 0.09209157                                   & room\_type\_Entirehome/apt                                   & 0.1495919                                    \\
+property\_type\_Loft                                         & 0.10969607                                    & longitude                                                    & 0.08412272                                   & property\_type\_Other                                        & -0.14047292                                 
+\end{tabular}}
+\caption{Details of top three eigenvectors}
+\label{tab:eigenvectors1}
+\end{table}
+%%%%%%%%%%%%%%%%%%% PCA1 %%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Overall satisfaction}
+Then the same technique is applied to the infomation without overall satisfection data.
+%%%%%%%%%%%%%%%%%%% PCA2 %%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/eigenvalues2.png}
+\caption{ A scree plot showing the percentage variance of each principle component, and a running cumulative total}
+\label{fig:eigenvalues1}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pca2-2d.png}
+\caption{A 2D projection of the PCA results}
+\label{fig:pca2-2d}
+\end{figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/pca2-3d.png}
+\caption{A 3D projection of the PCA results}
+\label{fig:pca2-3d}
+\end{figure}
+%%%%%%%%%%%%%%%%%%% PCA2 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
 
 \subsection{Self-orgnization map}
