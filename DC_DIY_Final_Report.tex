@@ -12,6 +12,7 @@
 \usepackage{fancyhdr}
 \usepackage{vmargin}
 \usepackage[section]{placeins}
+\usepackage{subcaption}
 
 \usepackage{tabularx}
 
@@ -196,54 +197,52 @@ First some simple projections of just two attribues of the data are used.\\
 As most of our attributes are discrete, some of the important can be distinguished as a form of points' labels.  
 \\ From most of these figures such as Fig.\ref{fig:pair-acc-price} and Fig.\ref{fig:pair-bedrooms-price} it can be found that the average room price in Manhattan is generally higher than that in Brookly. This is perhaps due to the fact that Manhattan is the center of the city. Also, Fig.\ref{fig:pair-acc-price} indicates that the larger the accomodates number is, the higher the price is. The trend of price over number of bedrooms in Fig.\ref{fig:pair-bedrooms-price} is similar, which is intutively true.
 \par However, Fig. \ref{fig:pair-latitude-longitude-price}, \ref{fig:pair-over-price1}, \ref{fig:pair-over-price2}, \ref{fig:pair-reviews-price1} and \ref{fig:pair-reviews-price2} also show some relation  between price and location, overall satisfication, room type and reviews number. So which of there attributes can influence the price mostly, i.e. the importance of these attributes. Then it can be figured out by the technique of PCA.
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pair-acc-price.png}
-\caption{A 2D-projection on to the prices and accomdates with borough label}
-\label{fig:pair-acc-price}label{fig:pair-over-price2}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pair-bedrooms-price.png}
-\caption{A 2D-projection on to the prices and bedrooms with borough label}
-\label{fig:pair-bedrooms-price}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pair-latitude-longitude-price.png}
-\caption{A 2D-projection on to the latitude and longitude with price label}
-\label{fig:pair-latitude-longitude-price}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pair-latitude-longitude-satisfiction.png}
-\caption{A 2D-projection on to the latitude and longitude with satisfiction label}
-\label{fig:pair-latitude-longitude-satisfiction}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pair-over-price1.png}
-\caption{A 2D-projection on to the satisfiction and price with borough label}
-\label{fig:pair-over-price1}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pair-over-price2.png}
-\caption{A 2D-projection on to the satisfiction and price with room type label}
-\label{fig:pair-over-price2}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pair-reviews-price1.png}
-\caption{A 2D-projection on to the number of reviews and price with borough label}
-\label{fig:pair-reviews-price1}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pair-reviews-price2.png}
-\caption{A 2D-projection on to the number of reviews and price with room type label}
-\label{fig:pair-reviews-price2}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/pair-acc-price.png}
+        \caption{prices and accomdates with borough}
+        \label{fig:pair-acc-price}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/pair-bedrooms-price.png}
+        \caption{prices and bedrooms with borough}
+        \label{fig:pair-bedrooms-price}
+    \end{subfigure}
+    
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/pair-latitude-longitude-price.png}
+        \caption{latitude and longitude with price}
+        \label{fig:pair-bedrooms-price}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/pair-latitude-longitude-satisfiction.png}
+        \caption{latitude and longitude with satisfiction}
+        \label{fig:pair-latitude-longitude-satisfiction}
+    \end{subfigure}
+    
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/pair-over-price1.png}
+        \caption{latitude and longitude with price}
+        \label{fig:pair-bedrooms-price}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/pair-over-price2.png}
+        \caption{ satisfiction and price with room type}
+        \label{fig:pair-over-price2}
+    \end{subfigure}
+    
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/pair-reviews-price1.png}
+        \caption{number of reviews and price with borough}
+        \label{fig:pair-reviews-price1}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/pair-reviews-price2.png}
+        \caption{number of reviews and price with room type}
+        \label{fig:pair-reviews-price2}
+    \end{subfigure}
+    \caption{Co-ordinate projections}\label{fig:Co-ordinate-projections}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Principal Component Analysis}
@@ -264,18 +263,21 @@ In the first eigenvector the importance of borough is very important, this is wh
 The price differences are mainly interpreted by the second principal eigenvector. The most siginificant components in the 2nd vector is the room type. Since ``Entire'' type and ``Private'' type are negtive and positive respectively, we can conclude from the PCA projection result that the prices of Entire home/apt rooms are higher much higher than those of Private room. Also, the more accommodates and bedrooms, the higher price the room will have. The importance of accommodate numbers is greater than that of room numbers. And the overall stasifcation does influence a little on the price, which reveal the ``effect of market''.\par
 For the 3rd most siginificant eigenVector, the point is that the room with larger value has lower price. So this vector illustrate the property type influence on the price. The price of property type from lower to higher is apartment, house, loft and townhouse.
 %%%%%%%%%%%%%%%%%%% PCA1 %%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pca1-2d.png}
-\caption{A 2D projection of the PCA results}
-\label{fig:pca1-2d}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/pca1-2d.png}
+        \caption{Two dimensions}
+        \label{fig:pca1-2d}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/pca1-3d.png}
+        \caption{Three dimensions}
+        \label{fig:pca1-3d}
+    \end{subfigure}
+    \caption{A projection of the PCA results}
 \end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pca1-3d.png}
-\caption{A 3D projection of the PCA results}
-\label{fig:pca1-3d}
-\end{figure}
+
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[]
@@ -298,12 +300,15 @@ property\_type\_Loft                                         & 0.10969607       
 \end{table}
 %%%%%%%%%%%%%%%%%%% PCA1 %%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Overall satisfaction}
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.8\textwidth]{images/eigenvalues2.png}
+\caption{ A scree plot showing the percentage variance of each principle component, and a running cumulative total}
+\label{fig:eigenvalues1}
+\end{figure}
 Then the same technique is applied to the infomation without overall satisfection data. 
 Although the satisfication data are dropped and the price data are added, the most parts of PCA results almost remains the same. This means that the overall satisfications are not strongly related to the prices of the rooms.\\
 From the Fig. \ref{fig:eigenvalues1}, \ref{fig:pca2-2d} and \ref{fig:pca2-3d} it can be found that the 2nd and 3rd eigenvector has the largest influence on the overall satisfication data. \\
-It may be found that with low 2nd vector component but high 3rd vector component, the overall satisfication tends to be higher and with high 2nd vector component and high 3rd vector component, the stisfication tends to be lower. It can be known with lower 2nd vector, the price can be higher. Thus it can be Speculated that the overrall satisfication may related to the combination effects of price and property type, this can be something not reflected in the data such as ``Environmental health status'', ``Convenience of transportation'', etc..
-
-%%%%%%%%%%%%%%%%%%% PCA2 %%%%%%%%%%%%%%%%%%%%%%
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[]
@@ -324,27 +329,113 @@ property\_type\_Apartment                                     & -0.18760868     
 \caption{Details of top three eigenvectors for satisfication label}
 \label{tab:eigenvectors2}
 \end{table}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/eigenvalues2.png}
-\caption{ A scree plot showing the percentage variance of each principle component, and a running cumulative total}
-\label{fig:eigenvalues1}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pca2-2d.png}
-\caption{A 2D projection of the PCA results}
-\label{fig:pca2-2d}
-\end{figure}
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.8\textwidth]{images/pca2-3d.png}
-\caption{A 3D projection of the PCA results}
-\label{fig:pca2-3d}
+
+\par
+It may be found that with low 2nd vector component but high 3rd vector component, the overall satisfication tends to be higher and with high 2nd vector component and high 3rd vector component, the stisfication tends to be lower. It can be known with lower 2nd vector, the price can be higher. Thus it can be Speculated that the overrall satisfication may related to the combination effects of price and property type, this can be something not reflected in the data such as ``Environmental health status'', ``Convenience of transportation'', etc..
+
+%%%%%%%%%%%%%%%%%%% PCA2 %%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/pca2-2d.png}
+        \caption{Two dimensions}
+        \label{fig:pca2-2d}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{images/pca2-3d.png}
+        \caption{Three dimensions}
+        \label{fig:pca2-3d}
+    \end{subfigure}
+    \caption{A projection of the PCA results}
 \end{figure}
 %%%%%%%%%%%%%%%%%%% PCA2 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Clustering}
-
+After doing the basic overview of the data by PCA, the technique of clustering is used. Here the \textit{KMeans} tools in python package \textit{sklearn} is applied. \\
+The Kmeans clustering will first be applied to the dataset and visiualize it in a 3D PCA projcetoin figure. Then the results will be compared with that of KMeans directly applied to the PCA projected data.\\
+The Figure \ref{fig:KMeans-trainbywhole} shows the results of KMeans on the whole dataset. And Figure \ref{fig:KMeans-trainbyPCA} shows the resultes of KMeans on the PCA-projected data. Also, the quantization errors has been calculated and are shown in Figure \ref{fig:cluster-err}.\\
+From the results, we know that after the 3D-PCA projection, some infomation loss lead to the increase of number clusters where the elbow point appears. And the KMeans on the high dimensions doesn't successfully distingish the two clusters in the 3D projection which should be obvious, this may be caused by the adjacency of these points in the high dimension compared to other points.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbywhole-2.png}
+        \caption{Cluser number 2}
+        \label{fig:KMeans-trainbywhole-2}
+    \end{subfigure}
+	 %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbywhole-3.png}
+        \caption{Cluser number 3}
+        \label{fig:KMeans-trainbywhole-3}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbywhole-4.png}
+        \caption{Cluser number 4}
+        \label{fig:KMeans-trainbywhole-4}
+    \end{subfigure}
+    
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbywhole-5.png}
+        \caption{Cluser number 5}
+        \label{fig:KMeans-trainbywhole-5}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbywhole-6.png}
+        \caption{Cluser number 6}
+        \label{fig:KMeans-trainbywhole-6}
+    \end{subfigure}
+    \label{fig:KMeans-trainbywhole}
+    \caption{KMeans results on the whole dataset}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbyPCA-2.png}
+        \caption{Cluser number 2}
+        \label{fig:KMeans-trainbyPCA-2}
+    \end{subfigure}
+	 %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbyPCA-3.png}
+        \caption{Cluser number 3}
+        \label{fig:KMeans-trainbyPCA-3}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbyPCA-4.png}
+        \caption{Cluser number 4}
+        \label{fig:KMeans-trainbyPCA-4}
+    \end{subfigure}
+    
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbyPCA-5.png}
+        \caption{Cluser number 5}
+        \label{fig:KMeans-trainbyPCA-5}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.31\textwidth}
+        \includegraphics[width=\textwidth]{images/KMeans-trainbyPCA-6.png}
+        \caption{Cluser number 6}
+        \label{fig:KMeans-trainbyPCA-6}
+    \end{subfigure}
+    \label{fig:KMeans-trainbyPCA}
+    \caption{KMeans results on the PCA-projected data}
+\end{figure}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/cluster-err1.png}
+        \caption{the whole dataset}
+        \label{fig:cluster-err1}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/cluster-err2.png}
+        \caption{the PCA-projected 3D data}
+        \label{fig:cluster-err2}
+    \end{subfigure}
+    \label{fig:cluster-err}
+    \caption{Quantization error of KMeans results}
+\end{figure} 
 \subsection{Self-orgnization map}
 
 
