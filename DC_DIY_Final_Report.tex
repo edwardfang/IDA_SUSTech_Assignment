@@ -293,13 +293,37 @@ room\_type\_Private room                                     & 0.15672518       
 room\_type\_Entire home/ap                                   & -0.15512859                                   & property\_type\_Apartment                                    & 0.09209157                                   & room\_type\_Entirehome/apt                                   & 0.1495919                                    \\
 property\_type\_Loft                                         & 0.10969607                                    & longitude                                                    & 0.08412272                                   & property\_type\_Other                                        & -0.14047292                                 
 \end{tabular}}
-\caption{Details of top three eigenvectors}
+\caption{Details of top three eigenvectors for price label}
 \label{tab:eigenvectors1}
 \end{table}
 %%%%%%%%%%%%%%%%%%% PCA1 %%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Overall satisfaction}
-Then the same technique is applied to the infomation without overall satisfection data.
+Then the same technique is applied to the infomation without overall satisfection data. 
+Although the satisfication data are dropped and the price data are added, the most parts of PCA results almost remains the same. This means that the overall satisfications are not strongly related to the prices of the rooms.\\
+From the Fig. \ref{fig:eigenvalues1}, \ref{fig:pca2-2d} and \ref{fig:pca2-3d} it can be found that the 2nd and 3rd eigenvector has the largest influence on the overall satisfication data. \\
+It may be found that with low 2nd vector component but high 3rd vector component, the overall satisfication tends to be higher and with high 2nd vector component and high 3rd vector component, the stisfication tends to be lower. It can be known with lower 2nd vector, the price can be higher. Thus it can be Speculated that the overrall satisfication may related to the combination effects of price and property type, this can be something not reflected in the data such as ``Environmental health status'', ``Convenience of transportation'', etc..
+
 %%%%%%%%%%%%%%%%%%% PCA2 %%%%%%%%%%%%%%%%%%%%%%
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}{@{}crcrcr@{}}
+\multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}1st Principle Component\\ Eignenvalue 3.35927066\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}2nd Principle Component\\ Eigenvalue 2.87945626\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}3rd Principle Component\\ Eigenvalue 1.74548804\end{tabular}} \\ \midrule
+borough\_Manhattan                                            & -0.42064644                                  & accommodates                                                 & -0.42181393                                  & property\_type\_Apartment                                    & -0.60670587                                  \\
+borough\_Brooklyn                                             & 0.42064644                                   & bedrooms                                                     & -0.34494455                                  & property\_type\_House                                        & 0.36586291                                   \\
+price                                                         & -0.35066038                                  & room\_type\_Entire home/apt                                  & -0.32707405                                  & property\_type\_Loft                                         & 0.28124627                                   \\
+room\_type\_Entire home/apt                                   & -0.33406302                                  & room\_type\_Private room                                     & 0.31176258                                   & borough\_Manhattan                                           & 0.25276884                                   \\
+room\_type\_Private room                                      & 0.32657947                                   & latitude                                                     & 0.3067403                                    & borough\_Brooklyn                                            & -0.25276884                                  \\
+latitude                                                      & -0.30536557                                  & price                                                        & -0.3003249                                   & latitude                                                     & 0.22054766                                   \\
+longitude                                                     & 0.27052436                                   & borough\_Manhattan                                           & 0.29921848                                   & property\_type\_Townhouse                                    & 0.21576297                                   \\
+accommodates                                                  & -0.23111635                                  & borough\_Brooklyn                                            & -0.29921848                                  & room\_type\_Entirehome/apt                                   & -0.20696862                                  \\
+property\_type\_Apartment                                     & -0.18760868                                  & property\_type\_Apartment                                    & 0.24644235                                   & room\_type\_Private room                                     & 0.17363995                                  
+\end{tabular}}
+\caption{Details of top three eigenvectors for satisfication label}
+\label{tab:eigenvectors2}
+\end{table}
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.8\textwidth]{images/eigenvalues2.png}
