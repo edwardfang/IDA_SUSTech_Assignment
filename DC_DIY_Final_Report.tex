@@ -385,8 +385,8 @@ From the results, we know that after the 3D-PCA projection, some infomation loss
         \caption{Cluser number 6}
         \label{fig:KMeans-trainbywhole-6}
     \end{subfigure}
-    \label{fig:KMeans-trainbywhole}
-    \caption{KMeans results on the whole dataset}
+    
+    \caption{KMeans results on the whole dataset}\label{fig:KMeans-trainbywhole}
 \end{figure}
 \begin{figure}
     \centering
@@ -418,8 +418,7 @@ From the results, we know that after the 3D-PCA projection, some infomation loss
         \caption{Cluser number 6}
         \label{fig:KMeans-trainbyPCA-6}
     \end{subfigure}
-    \label{fig:KMeans-trainbyPCA}
-    \caption{KMeans results on the PCA-projected data}
+    \caption{KMeans results on the PCA-projected data}\label{fig:KMeans-trainbyPCA}
 \end{figure}
 \begin{figure}
     \centering
@@ -433,15 +432,81 @@ From the results, we know that after the 3D-PCA projection, some infomation loss
         \caption{the PCA-projected 3D data}
         \label{fig:cluster-err2}
     \end{subfigure}
-    \label{fig:cluster-err}
-    \caption{Quantization error of KMeans results}
+    \caption{Quantization error of KMeans results}\label{fig:cluster-err}
 \end{figure} 
-\subsection{Self-orgnization map}
+\subsection{Self-orgnaization Map}
+The SOM (Self-organizationing Map anyalysis is done with the help of python package \textit{minisom}\cite{justglowing/minisom_2017}, this packages first normolize the data and can then use the self-organization algorithem to iterate and get the weight of each component of the codebook vectors. The package supports the 2-D SOM algorithm, so it can be used to plot the high dimensional data in a two dimensinal plannar. Each cell in the figures is the normalised sum of the distances between a codebook vector and its neighbours.\\
+\subsubsection{SOM on the whole dataset}
+It can be seen from the Fig.\ref{fig:som-price1} that there are approximately four cluster, which confirms the results in the last clustering on the whole dataset. However, althoush some clusters have been shown in the Fig.\ref{fig:som-satisfication1}, there is no obvious rules of the distribution of the overall stasification lablel.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/som-price.png}
+        \caption{Distance Map of the 2D SOM}
+        \label{fig:som-price}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/som-price-label.png}
+        \caption{Labelled Distance Map of the 2D SOM}
+        \label{fig:som-price-label}
+    \end{subfigure}
+    \caption{SOM results on the whole dataset with price label}\label{fig:som-price1}
+\end{figure} 
 
-
-Each cell is the normalised sum of the distances between a neuron and its neighbours.
-
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/som-satisfication.png}
+        \caption{Distance Map of the 2D SOM}
+        \label{fig:som-satisfication}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/som-satisfication-label.png}
+        \caption{Labelled Distance Map of the 2D SOM}
+        \label{fig:som-satisfication}
+    \end{subfigure}
+    \caption{SOM results on the whole dataset with overall satisfication label}\label{fig:som-satisfication1}
+\end{figure} 
+\subsubsection{SOM on the 3D-PCA projection}
+Compared the SOM result in Fig.\ref{fig:som-pca-price1} with the result of SOM on the whole dataset, it can be concluded that the structure of the data become more simple after the projection on to a low dimension, but it can be seen that the number of the cluster is almost the same, so most of the infomation is not lost.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/som-pca-price.png}
+        \caption{Distance Map of the 2D SOM}
+        \label{fig:som-pca-price}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/som-pca-price-label.png}
+        \caption{Labelled Distance Map of the 2D SOM}
+        \label{fig:som-pca-price}
+    \end{subfigure}
+    \caption{SOM results on the PCA-projected data with price label}\label{fig:som-pca-price1}
+\end{figure} 
+\par Then, the weights of the codebook vectors are also projected to the 2D plannar using the eigenvectors of the previous principle component analysis. The result is shown in the Fig. \ref{fig:som-weights-projection}. The structure of this figure is very similar to that of Fig \ref{fig:pca1-2d}, which is derived by PCA. Both of these two techniques can visulize the high-dimension data in the low dimension space and make the following anaylysis more easy.
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/som-weights-projection.png}
+    \caption{Nomalized codebook vector of the SOM on the whole dataset projected on to the first two eigenvectors}
+    \label{fig:som-weights-projection}
+\end{figure}
 \subsection{Differences between two boroughs}
+Although the distinction of two borough in the preivious analysis is very obvious, it can be depicted more precisely if they are shown in the two differe figures.\\
+This two Figure (\ref{fig:pca3-1} and \ref{fig:pca3-2}) have almost the same structure but different scale over 1st principle component, this probabably is casued by different locations.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/pca3-1.png}
+        \caption{Manhattan}
+        \label{fig:pca3-1}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{images/pca3-2.png}
+        \caption{Brooklyn}
+        \label{fig:pca3-2}
+    \end{subfigure}
+    \caption{PCA projection on first two pinciple components}\label{fig:pca3}
+\end{figure} 
 \section{Conclusion}
 
 \newpage
