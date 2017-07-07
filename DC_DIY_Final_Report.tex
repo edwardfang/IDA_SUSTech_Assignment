@@ -508,7 +508,9 @@ This two Figure (\ref{fig:pca3-1} and \ref{fig:pca3-2}) have almost the same str
     \caption{PCA projection on first two pinciple components}\label{fig:pca3}
 \end{figure} 
 \section{Conclusion}
-
+With this airbnb dataset, what can be achieved is limited, beacuse the lack of some important attributes such as the health condition and the convenience of public tarnsportation. The preprocessing of the dataset can be really important for the data crawled directly from the Internet, the presedures include dealing with missing values, standardization and some special transformation of some attributes such as one-hot encoding. \par 
+The co-ordinate projections can really give some infomation, but they are limited, unable to describe the overview of the whole dataset. With the technique of PCA and SOM, the data can be visualized in a low dimension spcae as a whole. Besides, the SOM results can illustrate the structure of the data better than PCA, and PCA has better ability in determining the importances of different attributes.
+\par The different results of clustering over the whole dataset and the projected data is very likely cased by the large infomation loss during the projection because only about 30\% of the toltal variance remains.
 \newpage
 \bibliography{biblist}
 
